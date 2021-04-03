@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Country:</strong>
+  <%= @car.country %>
+</p>
+
+<p>
+  <strong>Commonname:</strong>
+  <%= @car.commonname %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @car.name %>
+</p>
+<%# , id:'favorite_link', remote:true %>
+<%= link_to favorite_text, favorites_update_path(@car.id) %> 
+<%= link_to 'Back', cars_path %>
