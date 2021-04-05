@@ -5,7 +5,7 @@ class CarsController < ApplicationController
   def index
     @cars = Car.all
 
-    render json: @cars.includes(:favorites)
+    render json: @cars
   end
 
   # GET /cars/1

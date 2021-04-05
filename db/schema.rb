@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_05_151825) do
+ActiveRecord::Schema.define(version: 2021_04_05_221025) do
 
   create_table "cars", force: :cascade do |t|
     t.string "country"
@@ -21,12 +21,12 @@ ActiveRecord::Schema.define(version: 2021_04_05_151825) do
   end
 
   create_table "favorites", force: :cascade do |t|
-    t.integer "car_id", null: false
+    t.integer "Car_id", null: false
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["car_id"], name: "index_favorites_on_car_id"
+    t.index ["Car_id"], name: "index_favorites_on_Car_id"
   end
 
-  add_foreign_key "favorites", "cars"
+  add_foreign_key "favorites", "Cars"
 end

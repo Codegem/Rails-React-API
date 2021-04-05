@@ -11,3 +11,8 @@ rm_array.each do |car|
     name: car["Mfr_Name"],
     )
 end
+
+    Favorite.create(
+        Car_id: 2,
+        name: "Tesla"
+    )

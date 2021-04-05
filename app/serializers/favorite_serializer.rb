@@ -1,3 +1,4 @@
 class FavoriteSerializer < ActiveModel::Serializer
-  attributes :id, :car_id, :name
+  attributes :Car_id, :id, :name
+  has_one :Car
 end
