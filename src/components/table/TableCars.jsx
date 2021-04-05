@@ -12,6 +12,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Pagination from '@material-ui/lab/Pagination';
+import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles({
     table: {
@@ -19,7 +20,9 @@ const useStyles = makeStyles({
     },
   });
 
+
 export default function TableCars(props) {
+
     const classes = useStyles();
     const data = props.data;
     // Paginate 
@@ -33,24 +36,10 @@ export default function TableCars(props) {
         setcurrentPage(value);
     };
     //Favorite
+    const [favorited] = useState(false);
+    const [ids, setids] = useState()
 
-    const [favorites, setfavorites] = useState([]);
-    const [favorited, setfavorited] = useState(false);
-
-
-    // const handleFavorite = async (event) => {
-    //     var data = new Event(event);
-    //     await fetch(props.API, {
-    //         method: "POST",
-    //         mode: "cors",
-    //         body: JSON.stringify({
-
-    //         })
-    //     })
-    //     .then(response => response.json)
-    //     .then(response => console.log(response))
-    // }
-    console.log(favorites)
+    console.log(ids)
 
     return (
         <TableContainer component={Paper}>
@@ -66,19 +55,37 @@ export default function TableCars(props) {
             <TableBody>
                 {currentData.map((item, index) => {
                     return(
-                        <TableRow key={item.index}>
-                        <TableCell align="center" >{item.country}</TableCell>
-                        <TableCell align="center" >{item.commonname}</TableCell>
-                        <TableCell align="center" >{item.name}</TableCell>
-                        <TableCell align="center" >
-                            <FavoritesButton id={item.id} favorited={favorited} favoriteHandle={favorites => setfavorites(favorites)} key={item.index} />
+                        <TableRow key={index}>
+                        <TableCell align="center">{item.country}</TableCell>
+                        <TableCell align="center">{item.commonname}</TableCell>
+                        <TableCell align="center">{item.name}</TableCell>
+                        <TableCell align="center">
+                            <FavoritesButton 
+                                    id={item.id} 
+                                    favorited={favorited} 
+                                    // handleid={favorites=>setids([...ids, favorites ])} 
+                                    handleid={ids => setids(ids)}
+                                    data={props.data}
+                            />
                         </TableCell>
                         </TableRow>
                     );
                 })}
             </TableBody>
         </Table>
-            <Pagination count={count} page={currentPage} onChange={handleChange}/>
+            <Box 
+                justifyContent="center" 
+                display="flex" 
+                alignItems="center" 
+                padding="2rem"
+            >
+                <Pagination 
+                    size="large" 
+                    count={count} 
+                    page={currentPage} 
+                    onChange={handleChange}
+                />
+            </Box>
         </TableContainer>
     )
 }
