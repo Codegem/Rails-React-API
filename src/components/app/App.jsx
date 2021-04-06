@@ -5,7 +5,7 @@ import TableCars from '../table/TableCars';
 import Favorites from '../favorites/Favorites';
 import FavoritesButton from '../favorites/FavoritesButton';
 import RemoveFavoritesButton from '../favorites/RemoveFavoritesButton';
-import EditBtn from './favoritesEdit/FavouriteEditBtn';
+import EditBtn from '../favoritesEdit/FavouriteEditBtn';
 
 //Material
 import Box from '@material-ui/core/Box';

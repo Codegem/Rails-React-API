@@ -17,18 +17,6 @@ export default function Favorites(props) {
 
     const [fav, setfav] = useState()
 
-    const editFavorite = (car) => {
-        const newFavouriteName = data.filter(
-          (data) => data.id === data.id
-        );
-        setfav(newFavouriteName)
-    }
-
-    const call = (car) => {
-        editFavorite(car)
-    }
-  
-  
     return (
         <Box display="flex" flexDirection="flex-end" >
             <Paper elevation={3}>
@@ -47,7 +35,7 @@ export default function Favorites(props) {
                             <ListItemText key={index} primary={<Remove />} onClick={() => props.removeFavouritehandle(car)}/>
                             </Grid>
                             <Grid item sm={2}>                            
-                            <ListItemText key={index} primary={<EditBtn/>} onClick={() => {setdialogOpen(true); editFavorite(car)}}/>
+                            <ListItemText key={index} primary={<EditBtn/>} onClick={() => {setdialogOpen(true); setfav(car.id);}}/>
                             </Grid>
                         </ListItem>  
                         );                
@@ -58,7 +46,7 @@ export default function Favorites(props) {
             <FavoriteEdit 
               dialogOpen={dialogOpen} 
               handleClose={dialogOpen => setdialogOpen(dialogOpen)}
-              favouriteEditHandle={call}
+              id={fav}
             />
         </Box>
     )
