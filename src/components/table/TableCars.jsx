@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import FavoritesButton from '../favorites/FavoritesButton';
 
 // TableComponent
 
@@ -16,17 +15,22 @@ import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles({
     table: {
-      minWidth: 650,
+      minWidth: 900,
     },
   });
 
 
 export default function TableCars(props) {
-
     const classes = useStyles();
+
+    //props
+
+    const FavoritesButton = props.favourite;
     const data = props.data;
+
     // Paginate 
-    const [rowPerPage] = useState(10);
+
+    const [rowPerPage] = useState(8);
     const [currentPage, setcurrentPage] = useState(1);
     const last = currentPage * rowPerPage;
     const first = last - rowPerPage;
@@ -34,16 +38,11 @@ export default function TableCars(props) {
     const count = Math.ceil(data.length / rowPerPage);
     const handleChange = (event, value) => {
         setcurrentPage(value);
-    };
-    //Favorite
-    const [favorited] = useState(false);
-    const [ids, setids] = useState()
-
-    console.log(ids)
-
+    };    
+    
     return (
         <TableContainer component={Paper}>
-        <Table className={classes.table} stickyHeader aria-label="sticky table">
+        <Table className={classes.table}>
             <TableHead >
             <TableRow>
                 <TableCell align="center">Country</TableCell>
@@ -53,20 +52,14 @@ export default function TableCars(props) {
             </TableRow>
             </TableHead>
             <TableBody>
-                {currentData.map((item, index) => {
+                {currentData.map((car, index) => {
                     return(
                         <TableRow key={index}>
-                        <TableCell align="center">{item.country}</TableCell>
-                        <TableCell align="center">{item.commonname}</TableCell>
-                        <TableCell align="center">{item.name}</TableCell>
-                        <TableCell align="center">
-                            <FavoritesButton 
-                                    id={item.id} 
-                                    favorited={favorited} 
-                                    // handleid={favorites=>setids([...ids, favorites ])} 
-                                    handleid={ids => setids(ids)}
-                                    data={props.data}
-                            />
+                        <TableCell align="center">{car.country}</TableCell>
+                        <TableCell align="center">{car.commonname}</TableCell>
+                        <TableCell align="center">{car.name}</TableCell>
+                        <TableCell align="center" onClick={() => props.favoritesHandle(car)}>
+                            <FavoritesButton />
                         </TableCell>
                         </TableRow>
                     );
@@ -77,10 +70,10 @@ export default function TableCars(props) {
                 justifyContent="center" 
                 display="flex" 
                 alignItems="center" 
-                padding="2rem"
+                padding="0.5rem"
             >
                 <Pagination 
-                    size="large" 
+                    size="medium" 
                     count={count} 
                     page={currentPage} 
                     onChange={handleChange}

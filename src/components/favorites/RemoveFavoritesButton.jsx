@@ -3,12 +3,12 @@ import StarsIcon from '@material-ui/icons/Stars';
 import {Button} from '@material-ui/core';
 
 
-function FavoritesButton() {
+function RemoveFavoritesButton() {
     return (
          <Button>
-            <StarsIcon color="primary"/>
+            <StarsIcon color="disabled"/>
         </Button>
     )
 }
 
-export default FavoritesButton
+export default RemoveFavoritesButton
